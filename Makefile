@@ -6,20 +6,24 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/11 12:53:23 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/11 21:49:43 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean valgrind re
+.PHONY: all clean fclean re test valgrind FORCE
 
 CC 			= cc
-CFLAGS 		= -g -Wall -Werror -Wextra
-LDFLAGS 	= -Lminilibx-linux
+CFLAGS 		= -Wall -Werror -Wextra
+LDFLAGS 	= -L$(MLX_DIR)
 LDLIBS 		= -lmlx -lXext -lX11 -lm
 
 NAME 		= cub3D
+TEST_NAME 	= test_cub3D
+TEST_MAP	= maps/eg01.cub
+
 LIBFT 		= libft/libft.a
-MINILIBX 	= minilibx-linux/libmlx.a
+MLX_DIR 	= minilibx-linux
+MINILIBX 	= $(MLX_DIR)/libmlx.a
 
 SRC_DIR 	= src
 TEST_DIR 	= tests
@@ -39,15 +43,15 @@ TEST_OBJ 	= $(addprefix $(OBJ_DIR)/, $(TEST:.c=.o))
 
 INCLUDES	= -I ./includes/\
 				-I ./libft/\
-				-I ./minilibx-linux/
+				-I ./$(MLX_DIR)/
 
 all: $(NAME)
 
-$(LIBFT):
+$(LIBFT): FORCE
 	$(MAKE) -C libft
 
 $(MINILIBX):
-	$(MAKE) -C minilibx-linux
+	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(MAIN_OBJ) $(SRC_OBJ) $(LIBFT) $(MINILIBX)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $(NAME)
@@ -62,23 +66,22 @@ $(OBJ_DIR)/%.o: %.c includes/cub3d.h
 clean:
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C libft clean
-	$(MAKE) -C minilibx-linux clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C libft fclean
-# 	rm -f $(NAME) $(TEST_NAME)
 
-# test: $(NAME)
-# 	@bash tests/run_tests.sh
+test: $(TEST_NAME)
+	./$(TEST_NAME)
 
 valgrind: $(NAME)
 	valgrind \
 	--leak-check=full \
 	--show-leak-kinds=all \
-	--trace-children=yes \
 	--track-fds=yes \
-	--suppressions=readline.supp \
-	./$(NAME)
+	./$(NAME) $(MAP)
+
+FORCE:
 
 re: fclean all
