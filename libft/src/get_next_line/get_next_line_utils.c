@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abisani <abisani@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 18:48:33 by abisani           #+#    #+#             */
+/*   Updated: 2025/12/26 16:08:30 by abisani          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../libft.h"
+
+char	*ft_gnl_strjoin(char **s1, char *s2)
+{
+	size_t	i;
+	size_t	ii;
+	char	*new_str;
+
+	i = 0;
+	ii = 0;
+	new_str = malloc(ft_strlen(*s1) + ft_strlen(s2) + 1);
+	if (!new_str)
+		return (NULL);
+	while (*s1 && (*s1)[i])
+	{
+		new_str[i] = (*s1)[i];
+		i++;
+	}
+	while (*s2 && s2[ii])
+		new_str[i++] = s2[ii++];
+	new_str[i] = 0;
+	free(*s1);
+	*s1 = new_str;
+	return (*s1);
+}
