@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 16:28:21 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/12 20:05:12 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 400
+# define ERR_MALLOC
+# define ERR_FILEOP
+# define ERR_USEAGE "usage: ./cub3d <path>/<map name>.cub"
+# define ERR_MLX_INIT "mlx initialisation failure"
+# define ERR_MLX_WIN "mlx window initialisation failure"
 
 # include <stdio.h>
 # include <errno.h>
@@ -22,14 +27,14 @@
 # include "libft.h"
 # include "mlx.h"
 
-typedef enum e_error
-{
-	ERR_OTHER,
-	ERR_MALLOC,
-	ERR_FILEOP,
-	ERR_USAGE,
-	ERR_MLX
-}				t_error;
+// typedef enum e_error
+// {
+// 	ERR_OTHER,
+// 	ERR_MALLOC,
+// 	ERR_FILEOP,
+// 	ERR_USAGE,
+// 	ERR_MLX
+// }				t_error;
 
 typedef enum e_side
 {
@@ -86,7 +91,8 @@ typedef struct s_game
 }	t_game;
 
 // Error handling
-void		error(t_game *data, char *context, t_error error_code);
+void	exit_error(t_game *data, char *error_code);
+void	exit_syserror(t_game *data, char *error_id);
 
 // Utils
 void		clean_up(t_game *data);

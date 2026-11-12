@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:59:54 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 16:25:06 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/12 20:04:11 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	validate_args(t_game *data, int ac, char *av[])
 {
 	if (ac != 2 || ft_strlen(av[1]) < 5
 			|| !ft_strnstr(av[1] + ft_strlen(av[1]) - 4, ".cub", 4))
-		error(data, "usage: ./cub3d <path>/<map name>.cub", ERR_USAGE);
+		exit_error(data, ERR_USEAGE);
 }
 
 int	main(int ac, char *av[])

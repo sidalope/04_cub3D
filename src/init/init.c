@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:22:28 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 16:34:32 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/12 20:08:03 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	init_mlx(t_game	*data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		error(data, "mlx initialisation failure", ERR_MLX);
+		exit_syserror(data, ERR_MLX_INIT);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!data->win)
-		error(data, "mlx window initialisation failure", ERR_MLX);
+		exit_syserror(data, ERR_MLX_WIN);
 	mlx_loop(data->mlx);
 }
 
