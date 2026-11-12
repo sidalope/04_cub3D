@@ -12,7 +12,7 @@
 
 #include "../libft.h"
 
-static char	*reset_buffer(char *buf)
+static int	reset_buffer(char **buf)
 {
 	size_t	i;
 	size_t	line_size;
@@ -20,24 +20,25 @@ static char	*reset_buffer(char *buf)
 
 	i = 0;
 	line_size = 0;
-	while (buf[line_size] != '\n' && buf[line_size] != '\0')
+	while ((*buf)[line_size] != '\n' && (*buf)[line_size] != '\0')
 		line_size++;
-	if (buf[line_size] == '\0')
+	tmp_buf = NULL;
+	if ((*buf)[line_size] == '\n')
 	{
-		free(buf);
-		return (NULL);
+		line_size++;
+		tmp_buf = ft_calloc(ft_strlen(*buf + line_size) + 1, 1);
+		if (!tmp_buf)
+		{
+			free(*buf);
+			*buf = NULL;
+			return (0);
+		}
+		while ((*buf)[line_size])
+			tmp_buf[i++] = (*buf)[line_size++];
 	}
-	line_size++;
-	tmp_buf = ft_calloc(ft_strlen(buf + line_size) + 1, 1);
-	if (!tmp_buf)
-	{
-		free(buf);
-		return (NULL);
-	}
-	while (buf[line_size])
-		tmp_buf[i++] = buf[line_size++];
-	free(buf);
-	return (tmp_buf);
+	free(*buf);
+	*buf = tmp_buf;
+	return (1);
 }
 
 static char	*parse_buffer(char	*buf)
@@ -77,7 +78,7 @@ static ssize_t	read_into_buffer(int fd, char **static_buffer)
 		if (ft_strchr(*static_buffer, '\n'))
 			return (free(temp_buf), bytes_read);
 		bytes_read = read(fd, temp_buf, BUFFER_SIZE);
-		if (bytes_read == -1 || bytes_read == -1)
+		if (bytes_read == -1)
 			break ;
 		temp_buf[bytes_read] = 0;
 		if (!ft_gnl_strjoin(static_buffer, temp_buf))
@@ -114,6 +115,10 @@ char	*get_next_line(int fd)
 	next_line = parse_buffer(buffer);
 	if (next_line == NULL)
 		return (free_buffer(&buffer));
-	buffer = reset_buffer(buffer);
+	if (!reset_buffer(&buffer))
+	{
+		free(next_line);
+		return (NULL);
+	}
 	return (next_line);
 }

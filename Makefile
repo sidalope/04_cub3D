@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/12 15:46:37 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/12 22:30:23 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,10 @@ NAME 		= cub3D
 TEST_NAME 	= test_cub3D
 TEST_MAP	= maps/eg01.cub
 
-LIBFT 		= libft/libft.a
-MLX_DIR 	= minilibx-linux
+LIBS_DIR 	= libs
+LIBFT_DIR 	= $(LIBS_DIR)/libft
+LIBFT 		= $(LIBFT_DIR)/libft.a
+MLX_DIR 	= $(LIBS_DIR)/minilibx-linux
 MINILIBX 	= $(MLX_DIR)/libmlx.a
 
 SRC_DIR 	= src
@@ -47,13 +49,13 @@ SRC_OBJ 	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 TEST_OBJ 	= $(addprefix $(OBJ_DIR)/, $(TEST:.c=.o))
 
 INCLUDES	= -I ./includes/\
-				-I ./libft/src/\
+				-I ./$(LIBFT_DIR)/src/\
 				-I ./$(MLX_DIR)/
 
 all: $(NAME)
 
 $(LIBFT): FORCE
-	$(MAKE) -C libft
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	$(MAKE) -C $(MLX_DIR)
@@ -70,12 +72,12 @@ $(OBJ_DIR)/%.o: %.c includes/cub3d.h
 
 clean:
 	rm -rf $(OBJ_DIR)
-	$(MAKE) -C libft clean
+	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME) $(TEST_NAME)
-	$(MAKE) -C libft fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 test: $(TEST_NAME)
 	./$(TEST_NAME)
@@ -85,7 +87,7 @@ valgrind: $(NAME)
 	--leak-check=full \
 	--show-leak-kinds=all \
 	--track-fds=yes \
-	./$(NAME) $(MAP)
+	./$(NAME) $(TEST_MAP)
 
 FORCE:
 
