@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 20:05:12 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/12 22:19:54 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,39 @@
 
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 400
-# define ERR_MALLOC
-# define ERR_FILEOP
+# define ERR_MALLOC "malloc"
+# define ERR_FILEOP "fileop"
 # define ERR_USEAGE "usage: ./cub3d <path>/<map name>.cub"
 # define ERR_MLX_INIT "mlx initialisation failure"
 # define ERR_MLX_WIN "mlx window initialisation failure"
+# define ERR_INVALID_CUB "malformed .cub file"
 
 # include <stdio.h>
 # include <errno.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
-
-// typedef enum e_error
-// {
-// 	ERR_OTHER,
-// 	ERR_MALLOC,
-// 	ERR_FILEOP,
-// 	ERR_USAGE,
-// 	ERR_MLX
-// }				t_error;
 
 typedef enum e_side
 {
 	N,
-	E,
 	S,
-	W
+	W,
+	E
 }	t_side;
 
 /* filled by the parser */
 typedef struct s_config
 {
-	char	**map;        // NULL-terminated, rows padded with spaces to map_w
+	char	**map;			// NULL-terminated, rows padded with spaces to map_w
 	int		map_w;
 	int		map_h;
-	int		spawn_x;      // column
-	int		spawn_y;      // row; the letter on the map is replaced with '0'
+	int		spawn_x;		// column
+	int		spawn_y;		// row; the letter on the map is replaced with '0'
 	t_side	spawn_dir;
-	char	*tex[4];      // texture paths, indexed by t_side
-	int		floor_color;  // (r << 16) | (g << 8) | b
+	char	*tex[4];		// texture paths, indexed by t_side
+	int		floor_color;	// (r << 16) | (g << 8) | b
 	int		ceil_color;
 }	t_config;
 
@@ -85,19 +78,18 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		*screen;
-	t_img		*tex[4];
 	t_player	*player;
 	t_config	*config;
 }	t_game;
 
 // Error handling
-void	exit_error(t_game *data, char *error_code);
-void	exit_syserror(t_game *data, char *error_id);
+void	exit_error(t_game *game, char *context, char *error_code);
+void	exit_syserror(t_game *game, char *context, char *error_id);
 
 // Utils
-void		clean_up(t_game *data);
+void	clean_up(t_game *game);
 
 // Initialisation
-t_game	*init();
+void	*init(t_game *game);
 
 #endif
