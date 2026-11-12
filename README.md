@@ -10,8 +10,8 @@
 cub3D is a ray-casting project written in C using MiniLibX. It renders a
 first-person 3D view from a `.cub` scene file.
 
-## Instructions
 
+## Instructions
 Build the project:
 
 ```sh
@@ -32,14 +32,16 @@ make fclean
 make re
 ```
 
+
 ## Resources
 - [Markdown guide](https://www.markdownguide.org/cheat-sheet/)
 - [minilibx docs](https://harm-smits.github.io/42docs/libs/minilibx)
 - [minilibx intro guide](https://gontjarow.github.io/MiniLibX/)
 - [Lode's Computer Graphics Tutorial: Raycasting](https://lodev.org/cgtutor/raycasting.html)
+- [Example maps and textures for testing](https://github.com/mcombeau/cub3D/tree/main/maps)
+
 
 ### AI usage
-
 AI was used for:
 - Writing stub README
 - Collating MiniLibX documentation
