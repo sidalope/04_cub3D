@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/11 21:49:43 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/12 15:46:37 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,16 @@ TEST_DIR 	= tests
 OBJ_DIR 	= obj
 
 MAIN_FILES 	= cub3d.c
-SRC_FILES 	= 
+ERROR_FILES	= error.c
+UTILS_FILES	= clean_up.c
+INIT_FILES	= init.c
 TEST_FILES 	= test.c
 
 MAIN 		= $(addprefix $(SRC_DIR)/, $(MAIN_FILES))
-SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))\
+				$(addprefix $(SRC_DIR)/error/, $(ERROR_FILES))\
+				$(addprefix $(SRC_DIR)/utils/, $(UTILS_FILES))\
+				$(addprefix $(SRC_DIR)/init/, $(INIT_FILES))
 TEST 		= $(addprefix $(TEST_DIR)/, $(TEST_FILES))
 
 MAIN_OBJ 	= $(addprefix $(OBJ_DIR)/, $(MAIN:.c=.o))
@@ -42,7 +47,7 @@ SRC_OBJ 	= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 TEST_OBJ 	= $(addprefix $(OBJ_DIR)/, $(TEST:.c=.o))
 
 INCLUDES	= -I ./includes/\
-				-I ./libft/\
+				-I ./libft/src/\
 				-I ./$(MLX_DIR)/
 
 all: $(NAME)

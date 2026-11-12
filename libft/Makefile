@@ -1,21 +1,20 @@
-
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abisiani <abisiani@student.42.fr>          +#+  +:+       +#+         #
+#    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 15:15:30 by abisiani          #+#    #+#              #
-#    Updated: 2025/05/29 14:34:53 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/12 15:30:04 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re test
 
-CC=cc
-CFLAGS=-I. -Wall -Werror -Wextra
-AR=ar rcs
+CC = cc
+CFLAGS = -I. -Wall -Werror -Wextra
+AR = ar rcs
 
 NAME = libft.a
 TEST_EXEC = test
