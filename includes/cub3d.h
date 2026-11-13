@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 10:37:30 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/13 13:04:13 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
+
+/*
+t_config_line and t_side can be conflated in
+the future if there is certainty that t_side will 
+never be accessed at index 4
+*/
+typedef enum e_config_line
+{
+    EMPTY_LINE = -2,
+	INVALID_LINE = -1,
+    NO_LINE,
+    SO_LINE,
+	WE_LINE,
+	EA_LINE,
+	F_LINE,
+    C_LINE,
+}	t_config_line;
 
 typedef enum e_side
 {
@@ -84,13 +101,14 @@ typedef struct s_game
 }	t_game;
 
 // Error handling
-void	exit_error(t_game *game, char *context, char *error_code);
-void	exit_syserror(t_game *game, char *context, char *error_id);
+void		exit_error(t_game *game, char *context, char *error_code);
+void		exit_syserror(t_game *game, char *context, char *error_id);
 
 // Utils
-void	clean_up(t_game *game);
+void		clean_up(t_game *game);
+char		*skip_whitespace(char *str);
 
 // Initialisation
-void	*init(t_game *game, char *cub_file);
+void		*init(t_game *game, char *cub_file);
 
 #endif

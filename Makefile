@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/13 10:28:39 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/13 12:39:56 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ_DIR 	= obj
 
 MAIN_FILES 	= cub3d.c
 ERROR_FILES	= error.c
-UTILS_FILES	= clean_up.c
+UTILS_FILES	= clean_up.c skip_whitespace.c
 INIT_FILES	= init.c
 TEST_FILES 	= test.c
 

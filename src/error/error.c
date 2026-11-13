@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 13:30:17 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 22:17:33 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/13 13:10:43 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exit_error(t_game *game, char *context, char *error_id)
 {
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	if (context)
-		ft_putstr_fd("context", STDERR_FILENO);
+		ft_putstr_fd(context, STDERR_FILENO);
 	ft_putstr_fd(error_id, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	clean_up(game);

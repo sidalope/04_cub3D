@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:22:28 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 10:53:24 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/13 13:27:30 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,37 +107,106 @@ static void	init_mlx(t_game	*game)
 	mlx_loop(game->mlx);
 }
 
+static void	parse_colour(t_game *game, char *rgb, int index)
+{
+	(void)game;
+	(void) index;
+	(void)rgb;
+	// printf("%s", rgb);
+}
+
+static t_config_line	get_line_type(char *str)
+{
+    if (!str)
+        return (INVALID_LINE);
+	else if (str[0] == '\0')
+		return (EMPTY_LINE);
+    else if(str[0] == 'F')
+		return (F_LINE);
+	else if(str[0] == 'C')
+		return (C_LINE);
+    else if (!ft_strncmp(str, "NO ", 3))
+        return (NO_LINE);
+    else if (!ft_strncmp(str, "SO ", 3))
+        return (SO_LINE);
+    else if (!ft_strncmp(str, "WE ", 3))
+        return (WE_LINE);
+    else if (!ft_strncmp(str, "EA ", 3))
+        return (EA_LINE);
+    return (INVALID_LINE);
+}
+
+static int	init_config_line(t_game *game, char *line)
+{
+    t_config_line	type;
+
+    type = get_line_type(skip_whitespace(line));
+	if (type == EMPTY_LINE)	
+		return (2);
+    else if (type == F_LINE)
+	{
+		parse_colour(game, line, 0);
+        return (1);
+	}
+    else if (type == C_LINE)
+    {
+		parse_colour(game, line, 1);
+        return (1);
+	}
+    else if (type == NO_LINE || type == SO_LINE
+        || type == WE_LINE || type == EA_LINE)
+	{
+		game->config.tex[type] = ft_strdup(line);
+		return (1);
+	}
+    return (0);
+}
+
 static void	read_config(t_game *game, char *cub_file)
 {
-	/*
-		First output the file to standard out
-		
-	*/
-	// int		fd;
-	// char	*tmp_line;
+	int		fd;
+	char	*tmp_line;
+	int		line_init_flag;
+	int		config_params;
 
-	// tmp_line = NULL;
-	// fd = -1;
-	(void)game;
-	(void)cub_file;
-
-	// if (!cub_file)
-	// 	exit_error(game, "Invalid cub file: ", ERR_INIT);
-	// fd = open(cub_file, O_RDONLY);
-	// if (fd == -1)
-	// 	exit_syserror(game, cub_file, ERR_FILEOP);
-	// tmp_line = get_next_line(fd);
-	// while (tmp_line)
-	// {
-	// 	printf("%s\n", tmp_line);
-	// 	tmp_line = get_next_line(fd);
-	// }
+	fd = -1;
+	tmp_line = NULL;
+	config_params = 6;
+	line_init_flag = -1;
+	if (!cub_file)
+		exit_error(game, "Invalid cub file: ", ERR_INIT);
+	fd = open(cub_file, O_RDONLY);
+	if (fd == -1)
+		exit_syserror(game, cub_file, ERR_FILEOP);
+	tmp_line = get_next_line(fd);
+	// validate non-error return of gnl
+	while (tmp_line && config_params)
+	{
+		line_init_flag = init_config_line(game, tmp_line);
+		if(line_init_flag == 1)
+			config_params--;
+		else if (line_init_flag == 0)
+		{
+			free(tmp_line);
+			exit_error(game, "malformed .cub config line: ", ERR_INVALID_CUB);
+		}
+		free(tmp_line);
+		tmp_line = get_next_line(fd);
+	}
+	// printf("next line: %s", tmp_line);
+	// printf("next line: %s", get_next_line(fd));
+	// printf("next line: %s", get_next_line(fd));
+	// printf("next line: %s", get_next_line(fd));
+	
+	// read_map(game, cub_file);
 }
 
 void	*init(t_game *game, char *cub_file)
 {
 	ft_bzero(game, sizeof(t_game));
 	read_config(game, cub_file);
+	// Worth writing a file handling wrapper for these two?
+	
 	init_mlx(game);
 	return (game);
 }
