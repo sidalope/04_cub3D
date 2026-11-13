@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/12 22:30:23 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/13 10:28:39 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LDLIBS 		= -lmlx -lXext -lX11 -lm
 
 NAME 		= cub3D
 TEST_NAME 	= test_cub3D
-TEST_MAP	= maps/eg01.cub
+TEST_MAP	= maps/valid/library.cub
 
 LIBS_DIR 	= libs
 LIBFT_DIR 	= $(LIBS_DIR)/libft

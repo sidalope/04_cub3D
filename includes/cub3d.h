@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/12 22:19:54 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/13 10:37:30 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ERR_MLX_INIT "mlx initialisation failure"
 # define ERR_MLX_WIN "mlx window initialisation failure"
 # define ERR_INVALID_CUB "malformed .cub file"
+# define ERR_INIT "could not initialize"
 
 # include <stdio.h>
 # include <errno.h>
@@ -77,9 +78,9 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_img		*screen;
-	t_player	*player;
-	t_config	*config;
+	t_img		screen;
+	t_player	player;
+	t_config	config;
 }	t_game;
 
 // Error handling
@@ -90,6 +91,6 @@ void	exit_syserror(t_game *game, char *context, char *error_id);
 void	clean_up(t_game *game);
 
 // Initialisation
-void	*init(t_game *game);
+void	*init(t_game *game, char *cub_file);
 
 #endif
