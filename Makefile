@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/13 12:39:56 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/14 14:43:40 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MAIN 		= $(addprefix $(SRC_DIR)/, $(MAIN_FILES))
 SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))\
 				$(addprefix $(SRC_DIR)/error/, $(ERROR_FILES))\
 				$(addprefix $(SRC_DIR)/utils/, $(UTILS_FILES))\
-				$(addprefix $(SRC_DIR)/init/, $(INIT_FILES))
+				$(addprefix $(SRC_DIR)/parsing/, $(INIT_FILES))
 TEST 		= $(addprefix $(TEST_DIR)/, $(TEST_FILES))
 
 MAIN_OBJ 	= $(addprefix $(OBJ_DIR)/, $(MAIN:.c=.o))
@@ -87,6 +87,7 @@ valgrind: $(NAME)
 	--leak-check=full \
 	--show-leak-kinds=all \
 	--track-fds=yes \
+	--log-file=valgrind.txt \
 	./$(NAME) $(TEST_MAP)
 
 FORCE:
