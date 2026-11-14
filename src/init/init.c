@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 14:22:28 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 13:27:30 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/14 15:36:02 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	init_mlx(t_game	*game)
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	if (!game->win)
 		exit_syserror(game, NULL, ERR_MLX_WIN);
-	mlx_loop(game->mlx);
+	// mlx_loop(game->ml
 }
 
 static void	parse_colour(t_game *game, char *rgb, int index)

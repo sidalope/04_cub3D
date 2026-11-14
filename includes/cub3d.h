@@ -22,6 +22,7 @@
 # define ERR_MLX_WIN "mlx window initialisation failure"
 # define ERR_INVALID_CUB "malformed .cub file"
 # define ERR_INIT "could not initialize"
+# define KEY_ESC 65307
 
 # include <stdio.h>
 # include <errno.h>
@@ -98,6 +99,7 @@ typedef struct s_game
 	t_img		screen;
 	t_player	player;
 	t_config	config;
+	t_img		tex[4];
 }	t_game;
 
 // Error handling
@@ -110,5 +112,12 @@ char		*skip_whitespace(char *str);
 
 // Initialisation
 void		*init(t_game *game, char *cub_file);
+
+void		stub_config(t_config *cfg);
+void		init_screen(t_game *game);
+void		put_pixel(t_img *img, int x, int y, int color);
+int			render_frame(t_game *game);
+int			key_press(int keycode, t_game *game);
+int			close_game(t_game *game);
 
 #endif
