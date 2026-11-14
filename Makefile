@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
+#    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/14 19:15:45 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/14 23:14:38 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,12 @@ SRC_DIR 	= src
 TEST_DIR 	= tests
 OBJ_DIR 	= obj
 
-MAIN_FILES 	= cub3d.c
-ERROR_FILES	= error.c
-UTILS_FILES	= clean_up.c skip_whitespace.c
-INIT_FILES	= init.c
-TEST_FILES 	= test.c
+MAIN_FILES		= cub3d.c
+ERROR_FILES		= error.c
+UTILS_FILES		= clean_up.c ft_atoi_cub3d.c is_whitespace.c skip_whitespace.c
+INIT_FILES		= init.c init_mlx.c
+PARSING_FILES	= parse_cub.c parse_configs.c parse_colours.c parse_map.c
+TEST_FILES		= test.c
 
 RENDER_FILES	= stub_config.c screen.c draw.c hooks.c
 
@@ -43,7 +44,8 @@ MAIN 		= $(addprefix $(SRC_DIR)/, $(MAIN_FILES))
 SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))\
 				$(addprefix $(SRC_DIR)/error/, $(ERROR_FILES))\
 				$(addprefix $(SRC_DIR)/utils/, $(UTILS_FILES))\
-				$(addprefix $(SRC_DIR)/parsing/, $(INIT_FILES))\
+				$(addprefix $(SRC_DIR)/init/, $(INIT_FILES))\
+				$(addprefix $(SRC_DIR)/init/parsing/, $(PARSING_FILES))\
 				$(addprefix $(SRC_DIR)/render/, $(RENDER_FILES))
 TEST 		= $(addprefix $(TEST_DIR)/, $(TEST_FILES))
 

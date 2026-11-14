@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 13:04:13 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/15 00:05:50 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 # define WIN_WIDTH 600
 # define WIN_HEIGHT 400
+// make syscall err codes more explicit
 # define ERR_MALLOC "malloc"
-# define ERR_FILEOP "fileop"
-# define ERR_USEAGE "usage: ./cub3d <path>/<map name>.cub"
+# define ERR_FILEOP "file operation"
+# define ERR_USEAGE "Useage: ./cub3d <path>/<map name>.cub"
 # define ERR_MLX_INIT "mlx initialisation failure"
 # define ERR_MLX_WIN "mlx window initialisation failure"
-# define ERR_INVALID_CUB "malformed .cub file"
-# define ERR_INIT "could not initialize"
+# define ERR_MLX_IMG "mlx_new_image failed"
+# define ERR_INVALID_CUB "Malformed .cub file"
+# define ERR_INVALID_COLOUR_CONFIG "Malformed .cub colour config"
+# define ERR_INIT "Could not initialize"
 # define KEY_ESC 65307
 
 # include <stdio.h>
@@ -100,6 +103,7 @@ typedef struct s_game
 	t_player	player;
 	t_config	config;
 	t_img		tex[4];
+	int			cub_fd;
 }	t_game;
 
 // Error handling
@@ -108,13 +112,25 @@ void		exit_syserror(t_game *game, char *context, char *error_id);
 
 // Utils
 void		clean_up(t_game *game);
+int			is_whitespace(char c);
 char		*skip_whitespace(char *str);
+int			ft_atoi_cub3d(const char *str);
 
 // Initialisation
-void		*init(t_game *game, char *cub_file);
-
-void		stub_config(t_config *cfg);
+void		init(t_game *game, char *cub_file);
+void		init_mlx(t_game	*game);
 void		init_screen(t_game *game);
+
+void		parse_cub_file(t_game *game);
+void		parse_configs(t_game *game, int fd);
+void		parse_map(t_game *game, int fd);
+
+void		parse_colour(t_game *game, char *rgb, int index);
+// void		validate_textures(t_game *game);
+void		stub_config(t_config *cfg);
+
+// Rendering
+
 void		put_pixel(t_img *img, int x, int y, int color);
 int			render_frame(t_game *game);
 int			key_press(int keycode, t_game *game);

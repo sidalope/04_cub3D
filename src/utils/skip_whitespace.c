@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skip_whitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 12:35:23 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 13:02:36 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/14 21:37:43 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ char	*skip_whitespace(char *str)
 	i = 0;
 	if (!str)
 		return (NULL);
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v')
 		i++;
 	return (str + i);
 }
