@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisani <abisani@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:15:17 by abisiani          #+#    #+#             */
-/*   Updated: 2025/12/27 10:10:10 by abisani          ###   ########.fr       */
+/*   Updated: 2026/11/14 17:51:45 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		print_x(unsigned int n);
 int		print_x_cap(unsigned int n);
 
 // get_next_line functions
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int *err);
 char	*ft_gnl_strjoin(char **s1, char *s2);
 
 #endif

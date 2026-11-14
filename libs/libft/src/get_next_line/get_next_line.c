@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisani <abisani@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:45:39 by abisani           #+#    #+#             */
-/*   Updated: 2025/12/26 16:19:46 by abisani          ###   ########.fr       */
+/*   Updated: 2026/11/14 17:58:06 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,37 +88,40 @@ static ssize_t	read_into_buffer(int fd, char **static_buffer)
 	return (bytes_read);
 }
 
-static void	*free_buffer(char **buffer)
+static void	*free_buffer(char **buffer, int *err, int error)
 {
+	if (error != 0)
+		*err = 1;
 	free(*buffer);
 	*buffer = NULL;
 	return (NULL);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int *err)
 {
 	static char		*buffer;
 	char			*next_line;
 	ssize_t			bytes_read;
 
+	*err = 0;
 	if (!buffer)
 	{
 		buffer = ft_calloc(1, 1);
 		if (!buffer)
-			return (NULL);
+			return (free_buffer(&buffer, err, 1));
 	}
 	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
-		return (free_buffer(&buffer));
+		return (free_buffer(&buffer, err, 1));
 	bytes_read = read_into_buffer(fd, &buffer);
 	if (bytes_read == -1 || (!bytes_read && buffer[0] == 0))
-		return (free_buffer(&buffer));
+		return (free_buffer(&buffer, err, bytes_read));
 	next_line = parse_buffer(buffer);
 	if (next_line == NULL)
-		return (free_buffer(&buffer));
+		return (free_buffer(&buffer, err, 1));
 	if (!reset_buffer(&buffer))
 	{
 		free(next_line);
-		return (NULL);
+		return (free_buffer(&buffer, err, 1));
 	}
 	return (next_line);
 }
