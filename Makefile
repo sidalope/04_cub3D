@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/14 14:43:40 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/14 19:15:45 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,14 @@ UTILS_FILES	= clean_up.c skip_whitespace.c
 INIT_FILES	= init.c
 TEST_FILES 	= test.c
 
+RENDER_FILES	= stub_config.c screen.c draw.c hooks.c
+
 MAIN 		= $(addprefix $(SRC_DIR)/, $(MAIN_FILES))
 SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))\
 				$(addprefix $(SRC_DIR)/error/, $(ERROR_FILES))\
 				$(addprefix $(SRC_DIR)/utils/, $(UTILS_FILES))\
-				$(addprefix $(SRC_DIR)/parsing/, $(INIT_FILES))
+				$(addprefix $(SRC_DIR)/parsing/, $(INIT_FILES))\
+				$(addprefix $(SRC_DIR)/render/, $(RENDER_FILES))
 TEST 		= $(addprefix $(TEST_DIR)/, $(TEST_FILES))
 
 MAIN_OBJ 	= $(addprefix $(OBJ_DIR)/, $(MAIN:.c=.o))
