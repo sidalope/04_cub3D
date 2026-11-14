@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:59:54 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 10:11:41 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:12:32 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@ static void	validate_args(t_game *game, int ac, char *av[])
 int	main(int ac, char *av[])
 {
 	t_game	game;
+
+	ft_bzero(&game, sizeof(t_game)); //this was important before arg check
+
 	// - arg handling
 	validate_args(&game, ac, av);
 	init(&game, av[1]);
 	// - read map and 6 args
 	// - parse the map, check errors
  	// - leak check for malformed files
+	
+	stub_config(&game.config);
+	init_screen(&game);
+	render_frame(&game);
+	mlx_hook(game.win, 2, 1L << 0,key_press, &game);
+	mlx_hook(game.win, 17, 0, close_game, &game);
+	mlx_expose_hook(game.win, render_frame, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }
