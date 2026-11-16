@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 19:32:10 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/14 23:55:14 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/15 12:16:09 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ static int parse_line(t_game *game, char *next_line, int *n_params_left)
 	int		parseable;
 
 	parseable = -1;
-	if (n_params_left && next_line)
+	if (!n_params_left)
+		return (0);
+	if (*n_params_left && next_line)
 	{
 		parseable = parse_config_str(game, next_line);
 		if(parseable == 1)
-			n_params_left--;
+			(*n_params_left)--;
 		else if (parseable == 0)
 			return (0);
 	}
