@@ -6,21 +6,11 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 13:30:17 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 13:57:43 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 19:30:14 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	strip_newline(char *str)
-{
-	int	len;
-
-	len = 0;
-	len = ft_strlen(str);
-	if (str[len] == '\n')
-		str[len] = '0';
-}
 
 /* A fatal error not requiring strerror */
 void	exit_error(t_game *game, char *context, char *error_id)

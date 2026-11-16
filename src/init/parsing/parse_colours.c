@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 20:11:01 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 13:20:08 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 19:32:56 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,25 @@ static int	parse_rgb_str(char *str, int *rgb)
 	int 	i;
 
 	i = 0;
+	strip_newline(str);
 	while (*str && i < 3)
 	{
 		rgb[i] = ft_atoi_cub3d(str);
+		printf("%i: %i\n", i, rgb[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
 			return (0);
 		str += ft_intlen(rgb[i]);
+		if (i < 2 && *str == ',')
+		{
+			str++;
+			skip_whitespace(str);
+		}
 		if (!*str)
 			break ;
-		else if (i < 2 && *str == ',')
-			str++;
 		i++;
 	}
-	if (i < 2 && *str)
+	skip_whitespace(str);
+	if (i < 2 || *str)
 		return (0);
 	return (1);
 }

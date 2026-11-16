@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/16 19:00:50 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 19:31:20 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ OBJ_DIR 	= obj
 
 MAIN_FILES		= cub3d.c
 ERROR_FILES		= error.c
-UTILS_FILES		= clean_up.c ft_atoi_cub3d.c is_whitespace.c skip_whitespace.c
+UTILS_FILES		= clean_up.c ft_atoi_cub3d.c is_whitespace.c skip_whitespace.c \
+					strip_newline.c
 INIT_FILES		= init.c init_mlx.c
 PARSING_FILES	= parse_cub.c parse_configs.c parse_colours.c parse_map.c
 TEST_FILES		= test.c

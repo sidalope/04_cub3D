@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 13:24:19 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 19:31:41 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,10 @@ void		exit_syserror(t_game *game, char *context, char *error_id);
 
 // Utils
 void		clean_up(t_game *game);
+int			ft_atoi_cub3d(const char *str);
 int			is_whitespace(char c);
 char		*skip_whitespace(char *str);
-int			ft_atoi_cub3d(const char *str);
+void		strip_newline(char *str);
 
 // Initialisation
 void		init(t_game *game, char *cub_file);
