@@ -6,11 +6,11 @@
 #    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/16 13:43:19 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 19:00:50 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re test valgrind FORCE
+.PHONY: all clean fclean re test test_all test_valgrind valgrind FORCE
 
 CC 			= cc
 CFLAGS 		= -Wall -Werror -Wextra
@@ -88,6 +88,31 @@ test_all: $(NAME)
 
 test_valgrind: $(NAME)
 	./tests/test_valgrind.sh
+
+test: $(NAME)
+	$(info )
+	$(info Running with TEST_MAP pointing to: $(TEST_MAP))
+	$(info To change map:)
+	$(info )
+	$(info MAP=tests/maps/valid/cheese_maze.cub)
+	$(info make test TEST_MAP=$$MAP)
+	$(info )
+	./$(NAME) $(TEST_MAP)
+
+valgrind: $(NAME)
+	$(info Running with TEST_MAP pointing to: $(TEST_MAP))
+	$(info To change map:)
+	$(info )
+	$(info MAP=tests/maps/valid/cheese_maze.cub)
+	$(info make valgrind TEST_MAP=$$MAP)
+	$(info )
+	valgrind \
+		--leak-check=full \
+		--show-leak-kinds=all \
+		--track-fds=yes \
+		--errors-for-leak-kinds=all \
+		--log-file="tests/output/single_valgrind.txt" \
+		./cub3D $(TEST_MAP)
 
 FORCE:
 
