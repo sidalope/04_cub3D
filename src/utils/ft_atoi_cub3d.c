@@ -6,10 +6,9 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 22:27:01 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/15 12:31:30 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:15:01 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 static int	skip_whitespace(const char *str)
 {

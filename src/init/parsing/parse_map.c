@@ -6,13 +6,13 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 19:31:53 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/14 20:08:57 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:07:38 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void parse_map(t_game *game, int fd)
+void	parse_map(t_game *game, int fd)
 {
 	(void)game;
 	(void)fd;

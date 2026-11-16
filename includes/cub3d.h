@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 19:45:30 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:01:36 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ never be accessed at index 4
 */
 typedef enum e_config_line
 {
-    EMPTY_LINE = -2,
+	EMPTY_LINE = -2,
 	INVALID_LINE = -1,
-    NO_LINE,
-    SO_LINE,
+	NO_LINE,
+	SO_LINE,
 	WE_LINE,
 	EA_LINE,
 	F_LINE,
-    C_LINE,
+	C_LINE,
 }	t_config_line;
 
 typedef enum e_side

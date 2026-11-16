@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+         #
+#    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 15:15:30 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/12 15:30:04 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 20:04:00 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,9 @@ SRC_FILES = ft_isalpha.c ft_toupper.c ft_tolower.c ft_isdigit.c ft_isalnum.c \
 	ft_putnbr_fd.c ft_putunbr_fd.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 	ft_lstmap.c ft_intlen.c
-PRINTF_FILES = ft_printf.c print_c.c print_s.c print_p.c \
-	print_di.c print_u.c print_x.c print_x_cap.c
 GNL_FILES = get_next_line.c get_next_line_utils.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))\
-		$(addprefix $(SRC_DIR)/ft_printf/, $(PRINTF_FILES))\
 		$(addprefix $(SRC_DIR)/get_next_line/, $(GNL_FILES))
 
 OBJ=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))

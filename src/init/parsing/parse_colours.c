@@ -6,13 +6,13 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 20:11:01 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 19:55:50 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:08:55 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rgb_to_int(int *tmp_rgb)
+int	rgb_to_int(int	*tmp_rgb)
 {
 	int		rgb;
 
@@ -23,7 +23,7 @@ int	rgb_to_int(int *tmp_rgb)
 // Could easily do the conversion in here
 static int	parse_rgb_str(char *str, int *rgb)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	strip_newline(str);
@@ -57,12 +57,15 @@ static int	validate_colour_config_str(char *str, int *rgb)
 	else
 		return (0);
 	str = skip_whitespace(str);
-	if(!parse_rgb_str(str, rgb))
+	if (!parse_rgb_str(str, rgb))
 		return (0);
 	return (1);
 }
 
-/* type represents floor or ceiling and is indicated by either F_LINE or C_LINE */
+/* 
+	Type represents floor or ceiling and is indicated by either F_LINE or
+	C_LINE 
+*/
 void	parse_colour(t_game *game, char *config_string, int type)
 {
 	int		rgb[3];
