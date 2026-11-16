@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/16 11:28:58 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 12:15:59 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ CFLAGS 		= -Wall -Werror -Wextra
 LDFLAGS 	= -L$(MLX_DIR)
 LDLIBS 		= -lmlx -lXext -lX11 -lm
 
-NAME 		= cub3D
-TEST_NAME 	= test_cub3D
-TEST_MAP	= tests/maps/valid/library.cub
+NAME 			= cub3D
+TEST_MAP		= tests/maps/valid/library.cub
 
 LIBS_DIR 	= libs
 LIBFT_DIR 	= $(LIBS_DIR)/libft
@@ -84,16 +83,11 @@ fclean: clean
 	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
-test: $(TEST_,NAME)
-	./$(TEST_NAME)
+test_all: $(NAME) tests/tests.sh
+	./tests/tests.sh
 
-valgrind: $(NAME)
-	valgrind \
-	--leak-check=full \
-	--show-leak-kinds=all \
-	--track-fds=yes \
-	--log-file=tests/output/valgrind/valgrind_$(TEST_MAP).txt \
-	./$(NAME) $(TEST_MAP)
+test_valgrind: $(NAME)
+	./tests/valgrind_tests.sh
 
 FORCE:
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-cd tests || exit 1 #//"$(dirname "tests")" || exit 1
+cd tests || exit 1
 
 BIN=../cub3D
 RUN_SECONDS=0.2
-LOG=output/all_out.txt
+LOG=output/valgrind.txt
 
 mkdir -p "$(dirname "$LOG")"
 
@@ -25,7 +25,7 @@ fail() {
 	failed=$((failed + 1))
 }
 
-printf "~~ All Tests ~~/n" > "$LOG"
+printf "~~ All Tests ~~\n\n" > "$LOG"
 
 run_cub() {
 	echo "=== $1 ===" >> "$LOG"
