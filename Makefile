@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/14 23:14:38 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 11:28:58 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LDLIBS 		= -lmlx -lXext -lX11 -lm
 
 NAME 		= cub3D
 TEST_NAME 	= test_cub3D
-TEST_MAP	= maps/valid/library.cub
+TEST_MAP	= tests/maps/valid/library.cub
 
 LIBS_DIR 	= libs
 LIBFT_DIR 	= $(LIBS_DIR)/libft
@@ -84,7 +84,7 @@ fclean: clean
 	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
-test: $(TEST_NAME)
+test: $(TEST_,NAME)
 	./$(TEST_NAME)
 
 valgrind: $(NAME)
@@ -92,7 +92,7 @@ valgrind: $(NAME)
 	--leak-check=full \
 	--show-leak-kinds=all \
 	--track-fds=yes \
-	--log-file=valgrind.txt \
+	--log-file=tests/output/valgrind/valgrind_$(TEST_MAP).txt \
 	./$(NAME) $(TEST_MAP)
 
 FORCE:
