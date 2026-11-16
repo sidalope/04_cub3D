@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 20:01:36 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:35:55 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERR_INVALID_CUB "Malformed .cub file"
 # define ERR_INVALID_COLOUR_CONFIG "Malformed .cub colour config"
 # define ERR_INIT "Could not initialize"
+# define ERR_DOUBLE_CONFIG "Setting already exists for this config specifier"
 # define KEY_ESC 65307
 
 # include <stdio.h>

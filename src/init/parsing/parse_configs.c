@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 19:32:10 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 20:14:06 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 20:35:01 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,21 @@ static int	parse_config_str(t_game *game, char *line)
 	type = get_line_type(line);
 	if (type == EMPTY_LINE)	
 		return (2);
-	else if (type == F_LINE)
+	if ((type == F_LINE && game->config.floor_color != -1) \
+		|| (type == C_LINE && game->config.ceil_color != -1))
+		return (0);
+	if (type == F_LINE && game->config.floor_color == -1)
 		return (parse_colour(game, line, F_LINE), 1);
-	else if (type == C_LINE)
+	if (type == C_LINE && game->config.ceil_color == -1)
 		return (parse_colour(game, line, C_LINE), 1);
-	else if (type == NO_LINE || type == SO_LINE
+	if (type == NO_LINE || type == SO_LINE
         || type == WE_LINE || type == EA_LINE)
 	{
+		if(game->config.tex[type] != 0)
+			exit_error(game, line, ERR_DOUBLE_CONFIG);
 		game->config.tex[type] = ft_strdup(line);
 		if (!game->config.tex[type])
-			exit_error(game, "parse_config_str: ft_strdup(): ", ERR_MALLOC);
+			exit_error(game, "parse_config_str(): ft_strdup(): ", ERR_MALLOC);
 		return (1);
 	}
 	return (0);
@@ -91,9 +96,11 @@ void	parse_configs(t_game *game, int fd)
 			break ;
 		game->config.config_buf = get_next_line(fd, &gnl_error);
 	}
-	if (gnl_error || n_params)
+	if (gnl_error)
 	{
 		// Needs more clarity
 		exit_error(game, "malformed .cub config line: ", ERR_INVALID_CUB);
 	}
+	if (n_params)
+		exit_error(game, "missing config params: ", ERR_INVALID_CUB);
 }
