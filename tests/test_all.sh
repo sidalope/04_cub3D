@@ -4,7 +4,7 @@ cd tests || exit 1
 
 BIN=../cub3D
 RUN_SECONDS=0.2
-LOG=output/valgrind.txt
+LOG=output/all_out.txt
 
 mkdir -p "$(dirname "$LOG")"
 
