@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:45:39 by abisani           #+#    #+#             */
-/*   Updated: 2026/11/16 14:07:14 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 18:36:15 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*get_next_line(int fd, int *err)
 	ssize_t			bytes_read;
 
 	*err = 0;
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 		return (free_buffer(&buffer, err, 1));
 	if (!buffer)
 	{
@@ -112,8 +112,6 @@ char	*get_next_line(int fd, int *err)
 		if (!buffer)
 			return (free_buffer(&buffer, err, 1));
 	}
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
-		return (free_buffer(&buffer, err, 1));
 	bytes_read = read_into_buffer(fd, &buffer);
 	if (bytes_read == -1 || (!bytes_read && buffer[0] == 0))
 		return (free_buffer(&buffer, err, bytes_read));
