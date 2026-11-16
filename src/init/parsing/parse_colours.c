@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 20:11:01 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 11:48:29 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:20:08 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static int	parse_rgb_str(char *str, int *rgb)
 			str++;
 		i++;
 	}
-	printf("BANG\n");
-	printf("%i\n", i);
 	if (i < 2 && *str)
 		return (0);
 	return (1);

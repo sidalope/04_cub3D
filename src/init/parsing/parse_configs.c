@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 19:32:10 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/15 12:16:09 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:41:45 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,24 @@ static int parse_line(t_game *game, char *next_line, int *n_params_left)
 
 void	parse_configs(t_game *game, int fd)
 {
-	char	*tmp_line;
 	int		gnl_error;
 	int		n_params;
 
-	tmp_line = NULL;
 	gnl_error = 0;
 	n_params = 6;
-	tmp_line = get_next_line(fd, &gnl_error);
-	while (tmp_line && !gnl_error && n_params)
+	game->config.config_buf = get_next_line(fd, &gnl_error);
+	while (game->config.config_buf && !gnl_error && n_params)
 	{
-		parse_line(game, tmp_line, &n_params);
-		free(tmp_line);
-		tmp_line = NULL;
+		parse_line(game, game->config.config_buf, &n_params);
+		free(game->config.config_buf);
+		game->config.config_buf = NULL;
 		if (!n_params)
 			break ;
-		tmp_line = get_next_line(fd, &gnl_error);
+		game->config.config_buf = get_next_line(fd, &gnl_error);
 	}
-	if (gnl_error)
+	if (gnl_error || n_params)
 	{
-		free(tmp_line);
-		close(fd);
+		// Needs more clarity
 		exit_error(game, "malformed .cub config line: ", ERR_INVALID_CUB);
 	}
 }

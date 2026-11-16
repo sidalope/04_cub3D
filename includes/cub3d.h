@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/15 12:36:00 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 13:24:19 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_config
 	char	*tex[4];		// texture paths, indexed by t_side
 	int		floor_color;	// (r << 16) | (g << 8) | b
 	int		ceil_color;
+	char	*config_buf;
 }	t_config;
 
 /* rendering side */

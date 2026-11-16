@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 15:04:43 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/14 23:55:32 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 14:05:59 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ void	clean_up(t_game *game)
 	}
 	if (game->cub_fd != -1)
 		close(game->cub_fd);
+	free(game->config.config_buf);
+	get_next_line(-1, &i);
 }
