@@ -6,7 +6,7 @@
 #    By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/16 12:15:59 by abisiani         ###   ########.fr        #
+#    Updated: 2026/11/16 13:43:19 by abisiani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,11 +83,11 @@ fclean: clean
 	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
-test_all: $(NAME) tests/tests.sh
-	./tests/tests.sh
+test_all: $(NAME)
+	./tests/test_all.sh
 
 test_valgrind: $(NAME)
-	./tests/valgrind_tests.sh
+	./tests/test_valgrind.sh
 
 FORCE:
 
