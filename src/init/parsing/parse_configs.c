@@ -6,7 +6,7 @@
 /*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/14 19:32:10 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/16 13:41:45 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 19:55:34 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	parse_config_str(t_game *game, char *line)
 {
     t_config_line	type;
 
-    type = get_line_type(skip_whitespace(line));
+	line = skip_whitespace(line);
+    type = get_line_type(line);
 	if (type == EMPTY_LINE)	
 		return (2);
     else if (type == F_LINE)
