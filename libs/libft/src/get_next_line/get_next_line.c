@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: abisiani <abisani@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:45:39 by abisani           #+#    #+#             */
-/*   Updated: 2026/11/14 17:58:06 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/16 14:07:14 by abisiani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char	*get_next_line(int fd, int *err)
 	ssize_t			bytes_read;
 
 	*err = 0;
+	if (fd < 0)
+		return (free_buffer(&buffer, err, 1));
 	if (!buffer)
 	{
 		buffer = ft_calloc(1, 1);
