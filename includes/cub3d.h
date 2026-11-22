@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abisiani <abisani@student.42berlin.de>     +#+  +:+       +#+        */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 13:04:13 by abisiani         ###   ########.fr       */
+/*   Updated: 2026/11/17 11:58:08 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define ERR_INVALID_CUB "malformed .cub file"
 # define ERR_INIT "could not initialize"
 # define KEY_ESC 65307
+# define FOV 0.66
+
 
 # include <stdio.h>
 # include <errno.h>
@@ -30,6 +32,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
+# include <math.h>
 
 /*
 t_config_line and t_side can be conflated in
@@ -92,6 +95,22 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	delta_x;
+	double	delta_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+}	t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -113,11 +132,15 @@ char		*skip_whitespace(char *str);
 // Initialisation
 void		*init(t_game *game, char *cub_file);
 
+// Render
 void		stub_config(t_config *cfg);
 void		init_screen(t_game *game);
 void		put_pixel(t_img *img, int x, int y, int color);
 int			render_frame(t_game *game);
 int			key_press(int keycode, t_game *game);
 int			close_game(t_game *game);
+void		init_player(t_game *game);
+void		cast_ray(t_game *g, t_ray *r, int x);
+void		draw_walls(t_game *g);
 
 #endif

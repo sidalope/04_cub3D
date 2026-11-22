@@ -16,7 +16,7 @@ void	stub_config(t_config *cfg)
 	cfg->map_h = 5;
 	cfg->spawn_x = 2;
 	cfg->spawn_y = 3;
-	cfg->spawn_dir = N;
+	cfg->spawn_dir = E;
 	cfg->floor_color = 0x555555;
 	cfg->ceil_color = 0x87CEEB;
 }

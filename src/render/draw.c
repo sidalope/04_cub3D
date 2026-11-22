@@ -26,6 +26,7 @@ static void	draw_background(t_game *game)
 int	render_frame(t_game *game)
 {
 	draw_background(game);
+	draw_walls(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen.ptr, 0, 0);
 	return (0);
 }

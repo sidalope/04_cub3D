@@ -6,7 +6,7 @@
 /*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 11:59:54 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 15:12:32 by aoneil           ###   ########.fr       */
+/*   Updated: 2026/11/17 11:21:37 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ int	main(int ac, char *av[])
  	// - leak check for malformed files
 	
 	stub_config(&game.config);
+	init_player(&game);
+	//DEBUG
+	printf("pos %.1f %.1f dir %.0f %.0f plane %.2f %.2f\n",
+			game.player.pos_x, game.player.pos_y,
+			game.player.dir_x, game.player.dir_y,
+			game.player.plane_x, game.player.plane_y);
+		
 	init_screen(&game);
 	render_frame(&game);
 	mlx_hook(game.win, 2, 1L << 0,key_press, &game);
