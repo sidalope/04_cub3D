@@ -6,7 +6,7 @@
 /*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/17 11:58:08 by aoneil           ###   ########.fr       */
+/*   Updated: 2026/11/22 23:40:56 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # define ERR_INIT "could not initialize"
 # define KEY_ESC 65307
 # define FOV 0.66
-
+# define KEY_W 119
+# define KEY_S 115
+# define MOVE_SPEED 0.1
 
 # include <stdio.h>
 # include <errno.h>
@@ -142,5 +144,6 @@ int			close_game(t_game *game);
 void		init_player(t_game *game);
 void		cast_ray(t_game *g, t_ray *r, int x);
 void		draw_walls(t_game *g);
+void		move_player(t_game *g, int key);
 
 #endif
