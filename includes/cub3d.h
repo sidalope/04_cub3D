@@ -6,7 +6,7 @@
 /*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/22 23:40:56 by aoneil           ###   ########.fr       */
+/*   Updated: 2026/11/23 00:14:04 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define KEY_W 119
 # define KEY_S 115
 # define MOVE_SPEED 0.1
+# define KEY_A 97
+# define KEY_D 100
 
 # include <stdio.h>
 # include <errno.h>

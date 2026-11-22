@@ -12,7 +12,8 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		close_game(game);
 
-	else if (keycode == KEY_W || KEY_S)
+	else if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A
+			|| keycode == KEY_D)
 	{
 		move_player(game, keycode);
 		render_frame(game);
