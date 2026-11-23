@@ -18,6 +18,16 @@ int	key_press(int keycode, t_game *game)
 		move_player(game, keycode);
 		render_frame(game);
 	}
+	else if (keycode == KEY_LEFT)
+	{
+		rotate_player(&game->player, - ROT_SPEED);
+		render_frame(game);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		rotate_player(&game->player, ROT_SPEED);
+		render_frame(game);
+	}
 	return (0);
 }
 

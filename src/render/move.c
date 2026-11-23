@@ -1,7 +1,5 @@
 #include "cub3d.h"
 
-# define MARGIN 0.2
-
 static int	is_wall(t_config *cfg, double x, double y)
 {
 	if (x < 0 || y < 0 || (int)x >= cfg->map_w || (int)y >= cfg->map_h)
@@ -28,7 +26,6 @@ static void	try_move(t_game *g, double dx, double dy)
 		p->pos_y += dy;
 }
 
-
 void	move_player(t_game *g, int	key)
 {
 	t_player	*p;
@@ -43,4 +40,20 @@ void	move_player(t_game *g, int	key)
 	else if (key == KEY_D)
 		try_move(g, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
 	
+}
+
+void	rotate_player(t_player *p, double angle)
+{
+	double	old;
+	double	c;
+	double	s;
+
+	c = cos(angle);
+	s = sin(angle);
+	old = p->dir_x;
+	p->dir_x = p->dir_x * c - p->dir_y * s;
+	p->dir_y = old * s + p->dir_y * c;
+	old = p->plane_x;
+	p->plane_x = p->plane_x * c - p->plane_y * s;
+	p->plane_y = old * s + p->plane_y * c;
 }
