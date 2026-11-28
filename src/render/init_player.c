@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/28 16:59:13 by aoneil            #+#    #+#             */
+/*   Updated: 2026/11/28 17:02:56 by aoneil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	set_dir(t_player *p, t_side dir)
@@ -8,7 +20,7 @@ static void	set_dir(t_player *p, t_side dir)
 		p->dir_y = -1;
 	else if (dir == S)
 		p->dir_y = 1;
-	else if (dir == E) 
+	else if (dir == E)
 		p->dir_x = 1;
 	else if (dir == W)
 		p->dir_x = -1;

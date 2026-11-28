@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/28 16:53:41 by aoneil            #+#    #+#             */
+/*   Updated: 2026/11/28 17:11:53 by aoneil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	is_wall(t_config *cfg, double x, double y)
@@ -15,18 +27,18 @@ static void	try_move(t_game *g, double dx, double dy)
 
 	p = &g->player;
 	mx = MARGIN;
-	if ( dx < 0)
+	if (dx < 0)
 		mx = -MARGIN;
 	my = MARGIN;
-	if ( dy < 0)
-		my = - MARGIN;
-	if(!is_wall(&g->config, p->pos_x + dx + mx, p->pos_y))
+	if (dy < 0)
+		my = -MARGIN;
+	if (!is_wall(&g->config, p->pos_x + dx + mx, p->pos_y))
 		p->pos_x += dx;
-	if(!is_wall(&g->config, p->pos_x, p->pos_y + dy + my))
+	if (!is_wall(&g->config, p->pos_x, p->pos_y + dy + my))
 		p->pos_y += dy;
 }
 
-void	move_player(t_game *g, int	key)
+void	move_player(t_game *g, int key)
 {
 	t_player	*p;
 
@@ -39,7 +51,6 @@ void	move_player(t_game *g, int	key)
 		try_move(g, p->dir_y * MOVE_SPEED, -p->dir_x * MOVE_SPEED);
 	else if (key == KEY_D)
 		try_move(g, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
-	
 }
 
 void	rotate_player(t_player *p, double angle)

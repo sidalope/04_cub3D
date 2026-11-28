@@ -6,7 +6,7 @@
 #    By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/11 11:28:24 by abisiani          #+#    #+#              #
-#    Updated: 2026/11/22 23:39:57 by aoneil           ###   ########.fr        #
+#    Updated: 2026/11/25 15:43:16 by aoneil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ INIT_FILES	= init.c
 TEST_FILES 	= test.c
 
 RENDER_FILES	= stub_config.c screen.c draw.c hooks.c init_player.c \
-				raycast.c draw_walls.c move.c
+				raycast.c draw_walls.c move.c textures.c
 
 MAIN 		= $(addprefix $(SRC_DIR)/, $(MAIN_FILES))
 SRC 		= $(addprefix $(SRC_DIR)/, $(SRC_FILES))\

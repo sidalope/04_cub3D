@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/28 16:59:19 by aoneil            #+#    #+#             */
+/*   Updated: 2026/11/28 17:07:12 by aoneil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	close_game(t_game *game)
@@ -11,16 +23,15 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		close_game(game);
-
 	else if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A
-			|| keycode == KEY_D)
+		|| keycode == KEY_D)
 	{
 		move_player(game, keycode);
 		render_frame(game);
 	}
 	else if (keycode == KEY_LEFT)
 	{
-		rotate_player(&game->player, - ROT_SPEED);
+		rotate_player(&game->player, -ROT_SPEED);
 		render_frame(game);
 	}
 	else if (keycode == KEY_RIGHT)
@@ -30,4 +41,3 @@ int	key_press(int keycode, t_game *game)
 	}
 	return (0);
 }
-

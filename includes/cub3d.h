@@ -6,7 +6,7 @@
 /*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:09:49 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/23 13:20:51 by aoneil           ###   ########.fr       */
+/*   Updated: 2026/11/26 13:45:25 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define MARGIN 0.2
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-# define ROT_SPEED 0.05
+# define ROT_SPEED 0.25
 
 # include <stdio.h>
 # include <errno.h>
@@ -119,6 +119,17 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
+typedef struct	s_col
+{
+	t_img	*tex;
+	int		line_h;
+	int		start;
+	int		end;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+}	t_col;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -152,5 +163,7 @@ void		cast_ray(t_game *g, t_ray *r, int x);
 void		draw_walls(t_game *g);
 void		move_player(t_game *g, int key);
 void		rotate_player(t_player *p, double angle);
+void		load_textures(t_game *game);
+unsigned int	get_tex_pixel(t_img *tex, int x, int y);
 
 #endif

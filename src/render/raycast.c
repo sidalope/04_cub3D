@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/28 16:58:57 by aoneil            #+#    #+#             */
+/*   Updated: 2026/11/28 17:04:46 by aoneil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	init_ray(t_game *g, t_ray *r, int x)
@@ -14,7 +26,7 @@ static void	init_ray(t_game *g, t_ray *r, int x)
 		r->delta_x = fabs(1 / r->dir_x);
 	r->delta_y = 1e30;
 	if (r->dir_y != 0)
-		r->delta_y = fabs(1/ r->dir_y);
+		r->delta_y = fabs(1 / r->dir_y);
 }
 
 static void	init_step(t_player *p, t_ray *r)
@@ -37,7 +49,7 @@ static void	init_step(t_player *p, t_ray *r)
 
 static void	run_dda(t_config *cfg, t_ray *r)
 {
-	while(1)
+	while (1)
 	{
 		if (r->side_dist_x < r->side_dist_y)
 		{
@@ -53,13 +65,13 @@ static void	run_dda(t_config *cfg, t_ray *r)
 		}
 		if (r->map_x < 0 || r->map_y < 0 || r->map_x >= cfg->map_w
 			|| r->map_y >= cfg->map_h || cfg->map[r->map_y][r->map_x] == '1')
-			return;
+			return ;
 	}
 }
 
-void		cast_ray(t_game *g, t_ray *r, int x)
+void	cast_ray(t_game *g, t_ray *r, int x)
 {
-	init_ray(g,r,x);
+	init_ray(g, r, x);
 	init_step(&g->player, r);
 	run_dda(&g->config, r);
 	if (r->side == 0)

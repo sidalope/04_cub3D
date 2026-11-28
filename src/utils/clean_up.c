@@ -6,7 +6,7 @@
 /*   By: aoneil <aoneil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 15:04:43 by abisiani          #+#    #+#             */
-/*   Updated: 2026/11/13 15:16:42 by aoneil           ###   ########.fr       */
+/*   Updated: 2026/11/28 17:23:34 by aoneil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 void	clean_up(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	if (!game)
 		return ;
-	// if (game->img)
-	// 	mlx_destroy_image(game->mlx, game->img);
-
+	while (i < 4)
+	{
+		if (game->tex[i].ptr)
+			mlx_destroy_image(game->mlx, game->tex[i].ptr);
+		i++;
+	}
 	if (game->screen.ptr)
 		mlx_destroy_image(game->mlx, game->screen.ptr);
 	if (game->win)
@@ -28,5 +34,4 @@ void	clean_up(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	// tex[i].ptr , config
 }
